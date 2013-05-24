@@ -36,8 +36,8 @@ function wpwhatchangedOutput() {
 function getRecentlyChangedPosts() {
     global $wpdb;
     $tablePrefix = $wpdb->prefix;
-    $recentlyChangedPosts = $wpdb->get_results( "SELECT `" . $tablePrefix . "posts`.post_name, post_title, post_modified, guid, post_type, post_status
-                                                 FROM wp_posts 
+    $recentlyChangedPosts = $wpdb->get_results( "SELECT post_name, post_title, post_modified, guid, post_type, post_status
+                                                 FROM " . $tablePrefix . "_posts 
                                                  WHERE (post_type='post' OR post_type='page') AND post_title!='Auto Draft' 
                                                  ORDER BY post_modified DESC LIMIT 0,30" );
     return $recentlyChangedPosts;
